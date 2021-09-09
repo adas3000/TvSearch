@@ -41,12 +41,12 @@ class TvChaptersListActivity : AppCompatActivity() {
         searchSV.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.searchTextChanged(query.toString())
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.searchTextChanged(newText.toString())
-                return true
+                return false
             }
         })
     }
