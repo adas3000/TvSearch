@@ -13,8 +13,10 @@ import pl.adam.tv_search.util.extensions.load
 class TvChapterAdapter(var tvChaptersList: List<TvChapter>) :
     RecyclerView.Adapter<TvChapterAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(viewType, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_tv_chapter, parent, false)
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tvChapter = tvChaptersList[position]

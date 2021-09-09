@@ -4,7 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import pl.adam.tv_search.model.model.TvChapter
 import pl.adam.tv_search.model.repository.TvChaptersListRepository
 import javax.inject.Inject
@@ -23,11 +26,8 @@ class TvChaptersListViewModel @Inject constructor(private val repository: TvChap
     fun searchTextChanged(query: String) {
         if (query.length > 3) {
             launch {
-                delay(3000)
                 val list = repository.obtainTvSeriesChapterList(query)
-//                withContext(Dispatchers.Main) {
-                    _tvList.postValue(list)
-//                }
+                _tvList.postValue(list)
             }
         }
     }
