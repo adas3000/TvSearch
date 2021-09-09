@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_tv_series_list.*
+import kotlinx.android.synthetic.main.activity_tv_chapters_list.*
 import pl.adam.tv_search.R
 import pl.adam.tv_search.viewmodel.TvChaptersListViewModel
 
