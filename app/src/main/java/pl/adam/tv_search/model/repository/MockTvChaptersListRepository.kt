@@ -3,7 +3,7 @@ package pl.adam.tv_search.model.repository
 import pl.adam.tv_search.model.model.TvSeriesChapter
 
 class MockTvSeriesRepository : TvSeriesRepository {
-    override fun obtainTvSeriesChapterList() = listOf(
+    override suspend fun obtainTvSeriesChapterList(query: String) = listOf(
         TvSeriesChapter(
             title = "a",
             img = "b",
