@@ -15,7 +15,8 @@
     </style>
 
     <style name="MainBackground">
-
+        <item name="android:padding">8dp</item>
+        <item name="android:background">#FEFEFE</item>
     </style>
 
 </resources>
