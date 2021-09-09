@@ -1,7 +1,8 @@
-package pl.adam.tv_search
+package pl.adam.tv_search.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import pl.adam.tv_search.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
