@@ -23,6 +23,7 @@ class TvChaptersListViewModel @Inject constructor(private val repository: TvChap
     fun searchTextChanged(query: String) {
         if (query.length > 3) {
             launch {
+                delay(3000)
                 val list = repository.obtainTvSeriesChapterList(query)
 //                withContext(Dispatchers.Main) {
                     _tvList.postValue(list)

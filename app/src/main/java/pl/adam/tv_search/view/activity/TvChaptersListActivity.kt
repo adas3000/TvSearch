@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_tv_chapters_list.*
 import pl.adam.tv_search.R
+import pl.adam.tv_search.view.adapter.TvChapterAdapter
 import pl.adam.tv_search.viewmodel.TvChaptersListViewModel
 
 @AndroidEntryPoint
@@ -14,16 +15,25 @@ class TvChaptersListActivity : AppCompatActivity() {
 
     private val viewModel: TvChaptersListViewModel by viewModels()
 
+    private val adapter = TvChapterAdapter(emptyList())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tv_chapters_list)
+        setupAdapter()
         setActions()
         observeViewModel()
     }
 
+    private fun setupAdapter() {
+        listRV.adapter = adapter
+        listRV.setHasFixedSize(true)
+    }
+
     private fun observeViewModel() {
         viewModel.tvList.observe(this) {
-
+            adapter.tvChaptersList = it
+            adapter.notifyDataSetChanged()
         }
     }
 

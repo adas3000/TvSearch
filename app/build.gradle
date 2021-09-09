@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -34,25 +36,23 @@ android {
 }
 
 dependencies {
-    def hilt_version = "2.38.1"
     def lifecycle_version = "2.3.1"
-    def glide_version = "4.12.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    //kodein
+    //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
     //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
     //lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    implementation "androidx.activity:activity-ktx:1.2.3"
-    implementation "androidx.fragment:fragment-ktx:1.3.5"
+    implementation "androidx.activity:activity-ktx:1.3.1"
+    implementation "androidx.fragment:fragment-ktx:1.3.6"
     //okhttp
     implementation "com.squareup.okhttp3:okhttp-bom:4.9.0"
     implementation "com.squareup.okhttp3:okhttp"
@@ -61,9 +61,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     //gson
     implementation "com.google.code.gson:gson:2.8.6"
-    //glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    //picasso
+    implementation "com.squareup.picasso:picasso:2.71828"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

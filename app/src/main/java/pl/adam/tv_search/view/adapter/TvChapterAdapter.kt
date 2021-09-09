@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pl.adam.tv_search.R
 import pl.adam.tv_search.model.model.TvChapter
-import pl.adam.tv_search.util.di.extensions.load
+import pl.adam.tv_search.util.extensions.load
 
-class TvChapterAdapter(val tvChaptersList: List<TvChapter>) :
+class TvChapterAdapter(var tvChaptersList: List<TvChapter>) :
     RecyclerView.Adapter<TvChapterAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
