@@ -5,17 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import pl.adam.tv_search.model.model.TvSeriesChapter
-import pl.adam.tv_search.model.repository.TvSeriesRepository
+import pl.adam.tv_search.model.model.TvChapter
+import pl.adam.tv_search.model.repository.TvChaptersListRepository
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
-class TvChapterListViewModel @Inject constructor(private val repository: TvSeriesRepository) :
+class TvChaptersListViewModel @Inject constructor(private val repository: TvChaptersListRepository) :
     ViewModel(), CoroutineScope {
 
-    private val _tvSeriesList: MutableLiveData<List<TvSeriesChapter>> = MutableLiveData()
-    val tvSeriesList: LiveData<List<TvSeriesChapter>> = _tvSeriesList
+    private val _tvList: MutableLiveData<List<TvChapter>> = MutableLiveData()
+    val tvList: LiveData<List<TvChapter>> = _tvList
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.IO
@@ -24,9 +24,9 @@ class TvChapterListViewModel @Inject constructor(private val repository: TvSerie
         if (query.length > 3) {
             launch {
                 val list = repository.obtainTvSeriesChapterList(query)
-                withContext(Dispatchers.Main) {
-                    _tvSeriesList.postValue(list)
-                }
+//                withContext(Dispatchers.Main) {
+                    _tvList.postValue(list)
+//                }
             }
         }
     }

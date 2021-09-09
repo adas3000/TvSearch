@@ -1,7 +1,7 @@
 package pl.adam.tv_search.model.repository
 
-import pl.adam.tv_search.model.model.TvSeriesChapter
+import pl.adam.tv_search.model.model.TvChapter
 
-interface TvSeriesRepository : Repository {
-    suspend fun obtainTvSeriesChapterList(query: String): List<TvSeriesChapter>
+interface TvChaptersListRepository : Repository {
+    suspend fun obtainTvSeriesChapterList(query: String): List<TvChapter>
 }

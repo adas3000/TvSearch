@@ -1,18 +1,18 @@
 package pl.adam.tv_search.model.repository
 
-import pl.adam.tv_search.model.model.TvSeriesChapter
+import pl.adam.tv_search.model.model.TvChapter
 
-class MockTvSeriesRepository : TvSeriesRepository {
+class MockTvChaptersListRepository : TvChaptersListRepository {
     override suspend fun obtainTvSeriesChapterList(query: String) = listOf(
-        TvSeriesChapter(
+        TvChapter(
             title = "a",
             img = "b",
             genre = ""
-        ), TvSeriesChapter(
+        ), TvChapter(
             title = "a",
             img = "b",
             genre = ""
-        ), TvSeriesChapter(
+        ), TvChapter(
             title = "a",
             img = "b",
             genre = ""
