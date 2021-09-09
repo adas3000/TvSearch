@@ -7,22 +7,22 @@ import androidx.appcompat.widget.SearchView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_tv_series_list.*
 import pl.adam.tv_search.R
-import pl.adam.tv_search.viewmodel.TvChapterListViewModel
+import pl.adam.tv_search.viewmodel.TvChaptersListViewModel
 
 @AndroidEntryPoint
-class TvChapterListActivity : AppCompatActivity() {
+class TvChaptersListActivity : AppCompatActivity() {
 
-    private val viewModel: TvChapterListViewModel by viewModels()
+    private val viewModel: TvChaptersListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tv_series_list)
+        setContentView(R.layout.activity_tv_chapters_list)
         setActions()
         observeViewModel()
     }
 
     private fun observeViewModel() {
-        viewModel.tvSeriesList.observe(this) {
+        viewModel.tvList.observe(this) {
 
         }
     }
