@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pl.adam.tv_search.R
 import pl.adam.tv_search.model.model.TvChapter
+import pl.adam.tv_search.util.di.extensions.load
 
 class TvChapterAdapter(val tvChaptersList: List<TvChapter>) :
     RecyclerView.Adapter<TvChapterAdapter.ViewHolder>() {
@@ -16,7 +17,9 @@ class TvChapterAdapter(val tvChaptersList: List<TvChapter>) :
         ViewHolder(LayoutInflater.from(parent.context).inflate(viewType, parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = tvChaptersList[position].title
+        val tvChapter = tvChaptersList[position]
+        holder.title.text = tvChapter.title
+        holder.logo.load(tvChapter.img)
     }
 
     override fun getItemCount() = tvChaptersList.size
