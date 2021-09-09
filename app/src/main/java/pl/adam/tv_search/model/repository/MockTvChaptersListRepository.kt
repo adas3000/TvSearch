@@ -8,15 +8,15 @@ class MockTvChaptersListRepository @Inject constructor() : TvChaptersListReposit
         TvChapter(
             title = "Action",
             img = "https://static.tvmaze.com/uploads/images/medium_portrait/51/128054.jpg",
-            genre = "Comedy"
+            genres = listOf("Comedy")
         ), TvChapter(
             title = "Action",
             img = "https://static.tvmaze.com/uploads/images/medium_portrait/188/470746.jpg",
-            genre = "Sports"
+            genres = listOf("Sports")
         ), TvChapter(
             title = "Action Team",
             img = "https://static.tvmaze.com/uploads/images/medium_portrait/146/367368.jpg",
-            genre = "ITV2"
+            genres = listOf("ITV2")
         )
     )
 }

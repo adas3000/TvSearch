@@ -22,16 +22,25 @@ class TvChapterAdapter(var tvChaptersList: List<TvChapter>) :
         val tvChapter = tvChaptersList[position]
         holder.title.text = tvChapter.title
         holder.logo.load(tvChapter.img)
+        if (tvChapter.genres.isNotEmpty()) {
+            holder.firstGenre.text = tvChapter.genres[0]
+        }
+        if (tvChapter.genres.size >= 2) {
+            holder.secondGenre.text = tvChapter.genres[1]
+        }
+        if (tvChapter.genres.size >= 3) {
+            holder.thirdGenre.text = tvChapter.genres[2]
+        }
     }
 
     override fun getItemCount() = tvChaptersList.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val logo = view.findViewById<ImageView>(R.id.logoIV)
-        val title = view.findViewById<TextView>(R.id.titleTV)
-        val firstGenre = view.findViewById<TextView>(R.id.firstGenreTV)
-        val secondGenre = view.findViewById<TextView>(R.id.secondGenreTV)
-        val thirdGenre = view.findViewById<TextView>(R.id.thirdGenreTV)
+        val logo: ImageView = view.findViewById(R.id.logoIV)
+        val title: TextView = view.findViewById(R.id.titleTV)
+        val firstGenre: TextView = view.findViewById(R.id.firstGenreTV)
+        val secondGenre: TextView = view.findViewById(R.id.secondGenreTV)
+        val thirdGenre: TextView = view.findViewById(R.id.thirdGenreTV)
     }
 
 }
