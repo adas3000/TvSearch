@@ -4,15 +4,16 @@ import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import okhttp3.OkHttpClient
+import pl.adam.tv_search.model.network.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object NetworkModule {
 
     private const val TAG = "Network"
@@ -20,7 +21,7 @@ object NetworkModule {
     private const val TIMEOUT = 10L
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun provideOkHttpClient(): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
         okHttpClient.callTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -35,18 +36,21 @@ object NetworkModule {
             val response = it.proceed(request)
             Log.d(TAG, response.code.toString())
             Log.d(TAG, response.message)
-            Log.d(TAG, response.body?.string().toString())
+            Log.d(TAG, response.peekBody(2048).string())
             response
         }
         return okHttpClient.build()
     }
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder().baseUrl("https://api.tvmaze.com/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+    @Provides
+    @ViewModelScoped
+    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 }
