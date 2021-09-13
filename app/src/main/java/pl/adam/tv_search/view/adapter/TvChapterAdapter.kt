@@ -21,7 +21,7 @@ class TvChapterAdapter(var tvChaptersList: List<TvChapter>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tvChapter = tvChaptersList[position]
         holder.title.text = tvChapter.title
-        holder.logo.load(tvChapter.img)
+        tvChapter.img?.let { holder.logo.load(it) }
         if (tvChapter.genres.isNotEmpty()) {
             holder.firstGenre.text = tvChapter.genres[0]
         }
