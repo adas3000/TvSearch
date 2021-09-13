@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import pl.adam.tv_search.model.model.Result
 import pl.adam.tv_search.model.model.TvChapter
 import pl.adam.tv_search.model.repository.TvChaptersListRepository
 import javax.inject.Inject
@@ -20,16 +21,22 @@ class TvChaptersListViewModel @Inject constructor(private val repository: TvChap
     private val _tvList: MutableLiveData<List<TvChapter>> = MutableLiveData()
     val tvList: LiveData<List<TvChapter>> = _tvList
 
+    private val _error: MutableLiveData<String> = MutableLiveData()
+    val error: LiveData<String> = _error
+
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.IO
 
     fun searchTextChanged(query: String) {
         if (query.length >= 3) {
             launch {
-                val list = repository.obtainTvSeriesChapterList(query)
-                _tvList.postValue(list)
+                when (val result = repository.obtainTvSeriesChapterList(query)) {
+                    is Result.Success -> _tvList.postValue(result.data)
+                    is Result.Error -> _error.postValue(result.message)
+                }
             }
         }
     }
+
 
 }

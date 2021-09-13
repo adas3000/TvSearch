@@ -1,6 +1,7 @@
 package pl.adam.tv_search.view.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -34,6 +35,9 @@ class TvChaptersListActivity : AppCompatActivity() {
         viewModel.tvList.observe(this) {
             adapter.tvChaptersList = it
             adapter.notifyDataSetChanged()
+        }
+        viewModel.error.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
     }
 
