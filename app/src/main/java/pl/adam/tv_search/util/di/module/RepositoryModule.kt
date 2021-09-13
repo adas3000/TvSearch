@@ -5,7 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import pl.adam.tv_search.model.network.ApiService
 import pl.adam.tv_search.model.repository.MockTvChaptersListRepository
+import pl.adam.tv_search.model.repository.RemoteTvChaptersListRepository
 import pl.adam.tv_search.model.repository.TvChaptersListRepository
 
 @Module
@@ -14,5 +16,5 @@ object RepositoryModule {
 
     @Provides
     @ViewModelScoped
-    fun provideTvChaptersList(): TvChaptersListRepository = MockTvChaptersListRepository()
+    fun provideTvChaptersList(apiService: ApiService): TvChaptersListRepository = RemoteTvChaptersListRepository(apiService)
 }
